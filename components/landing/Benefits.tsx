@@ -9,117 +9,47 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import {
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 const benefits = [
 
   {
     title:"Faster Decisions",
-
-    description:
-      "Make smarter choices with real-time insights.",
-
-    icon:
-      TrendingUp,
+    description:"Make smarter choices with real-time insights.",
+    icon:TrendingUp,
   },
 
   {
     title:"Business Clarity",
-
-    description:
-      "See what matters across your operations.",
-
-    icon:
-      Eye,
+    description:"See what matters across your operations.",
+    icon:Eye,
   },
 
   {
     title:"Less Manual Work",
-
-    description:
-      "Automate repetitive reporting workflows.",
-
-    icon:
-      Clock,
+    description:"Automate repetitive reporting workflows.",
+    icon:Clock,
   },
 
   {
     title:"Growth Tracking",
-
-    description:
-      "Monitor business performance continuously.",
-
-    icon:
-      BarChart3,
+    description:"Monitor business performance continuously.",
+    icon:BarChart3,
   },
 
   {
     title:"Customer Insights",
-
-    description:
-      "Understand customer behavior better.",
-
-    icon:
-      Users,
+    description:"Understand customer behavior better.",
+    icon:Users,
   },
 
   {
     title:"Smarter Operations",
-
-    description:
-      "Operate with data-driven confidence.",
-
-    icon:
-      Sparkles,
+    description:"Operate with data-driven confidence.",
+    icon:Sparkles,
   },
 
 ];
-
-const container = {
-
-  hidden:{},
-
-  show:{
-
-    transition:{
-
-      staggerChildren:.1,
-
-    },
-
-  },
-
-};
-
-const item = {
-
-  hidden:{
-
-    opacity:0,
-
-    y:35,
-
-  },
-
-  show:{
-
-    opacity:1,
-
-    y:0,
-
-    transition:{
-
-      duration:.7,
-
-      ease:[0.22,1,0.36,1],
-
-    },
-
-  },
-
-};
 
 export default function Benefits() {
 
@@ -128,11 +58,8 @@ export default function Benefits() {
     <section
       className="
       mx-auto
-
       mt-40
-
       max-w-7xl
-
       px-6
       "
     >
@@ -156,7 +83,7 @@ export default function Benefits() {
         }}
 
         transition={{
-          duration:.7,
+          duration:0.7,
         }}
 
         className="text-center"
@@ -165,7 +92,6 @@ export default function Benefits() {
         <h2
           className="
           text-5xl
-
           font-bold
           "
         >
@@ -177,7 +103,6 @@ export default function Benefits() {
         <p
           className="
           mt-5
-
           text-slate-400
           "
         >
@@ -190,42 +115,47 @@ export default function Benefits() {
 
       {/* cards */}
 
-      <motion.div
-
-        variants={container}
-
-        initial="hidden"
-
-        whileInView="show"
-
-        viewport={{
-          once:true,
-          amount:.2,
-        }}
-
+      <div
         className="
         mt-16
-
         grid
-
         gap-6
-
         md:grid-cols-3
         "
       >
 
-        {benefits.map((item,index)=>{
+        {benefits.map((benefit,index)=>{
 
           const Icon =
-            item.icon;
+            benefit.icon;
 
           return (
 
             <motion.div
 
-              key={item.title}
+              key={benefit.title}
 
-              variants={item}
+              initial={{
+                opacity:0,
+                y:35,
+              }}
+
+              whileInView={{
+                opacity:1,
+                y:0,
+              }}
+
+              viewport={{
+                once:true,
+              }}
+
+              transition={{
+
+                duration:0.6,
+
+                delay:index * 0.1,
+
+              }}
 
               whileHover={{
 
@@ -241,63 +171,28 @@ export default function Benefits() {
 
               }}
 
-              transition={{
-
-                y:{
-
-                  duration:
-                    5 + index * .4,
-
-                  repeat:
-                    Infinity,
-
-                  ease:
-                    "easeInOut",
-
-                },
-
-              }}
-
               className="
               relative
-
               overflow-hidden
-
               rounded-[28px]
-
               border border-slate-800
-
               bg-slate-900
-
               p-8
-
-              transition-all
               "
             >
-
-              {/* glow */}
 
               <div
                 className="
                 absolute
-
                 inset-0
-
                 opacity-0
-
                 transition-opacity
-
                 hover:opacity-100
-
                 bg-gradient-to-b
-
                 from-blue-500/5
-
                 to-transparent
                 "
               />
-
-              {/* icon */}
 
               <motion.div
 
@@ -307,17 +202,13 @@ export default function Benefits() {
 
                 className="
                 relative
-
                 z-10
                 "
               >
 
                 <Icon
                   size={34}
-
-                  className="
-                  text-blue-400
-                  "
+                  className="text-blue-400"
                 />
 
               </motion.div>
@@ -325,34 +216,27 @@ export default function Benefits() {
               <h3
                 className="
                 relative
-
                 z-10
-
                 mt-6
-
                 text-xl
-
                 font-semibold
                 "
               >
 
-                {item.title}
+                {benefit.title}
 
               </h3>
 
               <p
                 className="
                 relative
-
                 z-10
-
                 mt-3
-
                 text-slate-400
                 "
               >
 
-                {item.description}
+                {benefit.description}
 
               </p>
 
@@ -362,7 +246,7 @@ export default function Benefits() {
 
         })}
 
-      </motion.div>
+      </div>
 
     </section>
 

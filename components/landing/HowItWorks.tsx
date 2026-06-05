@@ -1,90 +1,76 @@
 "use client";
 
 import {
-  motion,
-} from "framer-motion";
+  TrendingUp,
+  Clock,
+  Eye,
+  BarChart3,
+  Users,
+  Sparkles,
+} from "lucide-react";
 
-const steps = [
+import { motion } from "framer-motion";
 
-  "Create Account",
+const benefits = [
 
-  "Connect Data",
+  {
+    title:"Faster Decisions",
+    description:"Make smarter choices with real-time insights.",
+    icon:TrendingUp,
+  },
 
-  "Track Metrics",
+  {
+    title:"Business Clarity",
+    description:"See what matters across your operations.",
+    icon:Eye,
+  },
 
-  "Generate Reports",
+  {
+    title:"Less Manual Work",
+    description:"Automate repetitive reporting workflows.",
+    icon:Clock,
+  },
 
-  "Grow Business",
+  {
+    title:"Growth Tracking",
+    description:"Monitor business performance continuously.",
+    icon:BarChart3,
+  },
+
+  {
+    title:"Customer Insights",
+    description:"Understand customer behavior better.",
+    icon:Users,
+  },
+
+  {
+    title:"Smarter Operations",
+    description:"Operate with data-driven confidence.",
+    icon:Sparkles,
+  },
 
 ];
 
-const container = {
-
-  hidden:{},
-
-  show:{
-
-    transition:{
-
-      staggerChildren:.12,
-
-    },
-
-  },
-
-};
-
-const item = {
-
-  hidden:{
-
-    opacity:0,
-
-    y:40,
-
-  },
-
-  show:{
-
-    opacity:1,
-
-    y:0,
-
-    transition:{
-
-      duration:.7,
-
-      ease:[0.22,1,0.36,1],
-
-    },
-
-  },
-
-};
-
-export default function HowItWorks() {
+export default function Benefits() {
 
   return (
 
     <section
       className="
       mx-auto
-
       mt-40
-
-      max-w-6xl
-
+      max-w-7xl
       px-6
       "
     >
 
-      {/* Heading */}
+      {/* heading */}
 
       <motion.div
 
         initial={{
           opacity:0,
-          y:30,
+          y:25,
         }}
 
         whileInView={{
@@ -97,7 +83,7 @@ export default function HowItWorks() {
         }}
 
         transition={{
-          duration:.7,
+          duration:0.7,
         }}
 
         className="text-center"
@@ -106,167 +92,161 @@ export default function HowItWorks() {
         <h2
           className="
           text-5xl
-
           font-bold
           "
         >
 
-          How It Works
+          Built For Better Decisions
 
         </h2>
 
         <p
           className="
-          mt-4
-
+          mt-5
           text-slate-400
           "
         >
 
-          Setup takes minutes, not weeks.
+          Outcomes that move your business forward.
 
         </p>
 
       </motion.div>
 
-      {/* Steps */}
+      {/* cards */}
 
-      <motion.div
-
-        variants={container}
-
-        initial="hidden"
-
-        whileInView="show"
-
-        viewport={{
-          once:true,
-          amount:.2,
-        }}
-
+      <div
         className="
         mt-16
-
         grid
-
         gap-6
-
-        md:grid-cols-5
+        md:grid-cols-3
         "
       >
 
-        {steps.map((step,index)=>(
+        {benefits.map((benefit,index)=>{
 
-          <motion.div
+          const Icon =
+            benefit.icon;
 
-            key={step}
-
-            variants={item}
-
-            whileHover={{
-
-              y:-10,
-
-              scale:1.03,
-
-            }}
-
-            className="
-            relative
-
-            rounded-3xl
-
-            border border-slate-800
-
-            bg-slate-900
-
-            p-8
-
-            text-center
-
-            transition-all
-            "
-          >
-
-            {/* glow */}
-
-            <div
-              className="
-              absolute
-
-              inset-0
-
-              rounded-3xl
-
-              opacity-0
-
-              transition-opacity
-
-              hover:opacity-100
-
-              bg-gradient-to-b
-
-              from-blue-500/5
-
-              to-transparent
-              "
-            />
-
-            {/* number */}
+          return (
 
             <motion.div
 
+              key={benefit.title}
+
+              initial={{
+                opacity:0,
+                y:35,
+              }}
+
+              whileInView={{
+                opacity:1,
+                y:0,
+              }}
+
+              viewport={{
+                once:true,
+              }}
+
+              transition={{
+
+                duration:0.6,
+
+                delay:index * 0.1,
+
+              }}
+
               whileHover={{
-                rotate:8,
+
+                y:-8,
+
+                scale:1.02,
+
+              }}
+
+              animate={{
+
+                y:[0,-2,0],
+
               }}
 
               className="
-              mx-auto
-
-              flex
-
-              h-14
-              w-14
-
-              items-center
-
-              justify-center
-
-              rounded-full
-
-              bg-blue-600
-
-              text-lg
-
-              font-bold
-
-              shadow-lg
+              relative
+              overflow-hidden
+              rounded-[28px]
+              border border-slate-800
+              bg-slate-900
+              p-8
               "
             >
 
-              {index + 1}
+              <div
+                className="
+                absolute
+                inset-0
+                opacity-0
+                transition-opacity
+                hover:opacity-100
+                bg-gradient-to-b
+                from-blue-500/5
+                to-transparent
+                "
+              />
+
+              <motion.div
+
+                whileHover={{
+                  rotate:6,
+                }}
+
+                className="
+                relative
+                z-10
+                "
+              >
+
+                <Icon
+                  size={34}
+                  className="text-blue-400"
+                />
+
+              </motion.div>
+
+              <h3
+                className="
+                relative
+                z-10
+                mt-6
+                text-xl
+                font-semibold
+                "
+              >
+
+                {benefit.title}
+
+              </h3>
+
+              <p
+                className="
+                relative
+                z-10
+                mt-3
+                text-slate-400
+                "
+              >
+
+                {benefit.description}
+
+              </p>
 
             </motion.div>
 
-            <p
-              className="
-              mt-6
+          );
 
-              font-medium
+        })}
 
-              text-slate-200
-              "
-            >
-
-              {step}
-
-            </p>
-
-          </motion.div>
-
-        ))}
-
-      </motion.div>
+      </div>
 
     </section>
 

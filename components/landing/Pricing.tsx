@@ -1,13 +1,10 @@
 "use client";
 
-import {
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 const plans = [
 
   {
-
     name:"Starter",
 
     price:"Free",
@@ -68,50 +65,6 @@ const plans = [
 
 ];
 
-const container = {
-
-  hidden:{},
-
-  show:{
-
-    transition:{
-
-      staggerChildren:.15,
-
-    },
-
-  },
-
-};
-
-const item = {
-
-  hidden:{
-
-    opacity:0,
-
-    y:50,
-
-  },
-
-  show:{
-
-    opacity:1,
-
-    y:0,
-
-    transition:{
-
-      duration:.7,
-
-      ease:[0.22,1,0.36,1],
-
-    },
-
-  },
-
-};
-
 export default function Pricing() {
 
   return (
@@ -148,6 +101,10 @@ export default function Pricing() {
           once:true,
         }}
 
+        transition={{
+          duration:.7,
+        }}
+
         className="text-center"
       >
 
@@ -171,7 +128,7 @@ export default function Pricing() {
           "
         >
 
-          Flexible pricing that grows with your business.
+          Flexible plans that scale with your business.
 
         </p>
 
@@ -179,19 +136,7 @@ export default function Pricing() {
 
       {/* cards */}
 
-      <motion.div
-
-        variants={container}
-
-        initial="hidden"
-
-        whileInView="show"
-
-        viewport={{
-          once:true,
-          amount:.2,
-        }}
-
+      <div
         className="
         mt-20
 
@@ -203,17 +148,37 @@ export default function Pricing() {
         "
       >
 
-        {plans.map((plan)=>(
+        {plans.map((plan,index)=>(
 
           <motion.div
 
             key={plan.name}
 
-            variants={item}
+            initial={{
+              opacity:0,
+              y:40,
+            }}
+
+            whileInView={{
+              opacity:1,
+              y:0,
+            }}
+
+            viewport={{
+              once:true,
+            }}
+
+            transition={{
+
+              duration:.6,
+
+              delay:index * .12,
+
+            }}
 
             whileHover={{
 
-              y:-12,
+              y:-10,
 
               scale:1.02,
 
@@ -230,8 +195,6 @@ export default function Pricing() {
 
             p-8
 
-            transition-all
-
             ${
               plan.popular
 
@@ -242,25 +205,23 @@ export default function Pricing() {
             `}
           >
 
-            {/* glow */}
-
             <div
               className="
               absolute
 
               inset-0
 
+              opacity-0
+
+              hover:opacity-100
+
+              transition-opacity
+
               bg-gradient-to-b
 
               from-blue-500/5
 
               to-transparent
-
-              opacity-0
-
-              transition-opacity
-
-              hover:opacity-100
               "
             />
 
@@ -269,17 +230,12 @@ export default function Pricing() {
               <motion.div
 
                 animate={{
-
                   scale:[1,1.05,1],
-
                 }}
 
                 transition={{
-
                   repeat:Infinity,
-
                   duration:2,
-
                 }}
 
                 className="
@@ -331,7 +287,7 @@ export default function Pricing() {
 
             <div className="mt-8 space-y-4">
 
-              {plan.features.map((feature,index)=>(
+              {plan.features.map((feature,featureIndex)=>(
 
                 <motion.p
 
@@ -348,7 +304,7 @@ export default function Pricing() {
                   }}
 
                   transition={{
-                    delay:index * .08,
+                    delay:featureIndex * .05,
                   }}
                 >
 
@@ -380,8 +336,6 @@ export default function Pricing() {
               bg-blue-600
 
               py-3
-
-              font-medium
               "
             >
 
@@ -393,7 +347,7 @@ export default function Pricing() {
 
         ))}
 
-      </motion.div>
+      </div>
 
     </section>
 

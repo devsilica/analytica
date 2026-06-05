@@ -24,50 +24,6 @@ const integrations = [
 
 ];
 
-const container = {
-
-  hidden:{},
-
-  show:{
-
-    transition:{
-
-      staggerChildren:.08,
-
-    },
-
-  },
-
-};
-
-const item = {
-
-  hidden:{
-
-    opacity:0,
-
-    y:30,
-
-  },
-
-  show:{
-
-    opacity:1,
-
-    y:0,
-
-    transition:{
-
-      duration:.6,
-
-      ease:[0.22,1,0.36,1],
-
-    },
-
-  },
-
-};
-
 export default function Integrations() {
 
   return (
@@ -84,7 +40,7 @@ export default function Integrations() {
       "
     >
 
-      {/* Heading */}
+      {/* heading */}
 
       <motion.div
 
@@ -129,27 +85,15 @@ export default function Integrations() {
           "
         >
 
-          Connect Analytica with tools your business already uses.
+          Connect Analytica with tools you already use.
 
         </p>
 
       </motion.div>
 
-      {/* Grid */}
+      {/* grid */}
 
-      <motion.div
-
-        variants={container}
-
-        initial="hidden"
-
-        whileInView="show"
-
-        viewport={{
-          once:true,
-          amount:.2,
-        }}
-
+      <div
         className="
         mt-16
 
@@ -167,7 +111,27 @@ export default function Integrations() {
 
             key={tool}
 
-            variants={item}
+            initial={{
+              opacity:0,
+              y:30,
+            }}
+
+            whileInView={{
+              opacity:1,
+              y:0,
+            }}
+
+            viewport={{
+              once:true,
+            }}
+
+            transition={{
+
+              duration:.6,
+
+              delay:index * .08,
+
+            }}
 
             whileHover={{
 
@@ -180,23 +144,6 @@ export default function Integrations() {
             animate={{
 
               y:[0,-2,0],
-
-            }}
-
-            transition={{
-
-              y:{
-
-                duration:
-                  4 + index * .3,
-
-                repeat:
-                  Infinity,
-
-                ease:
-                  "easeInOut",
-
-              },
 
             }}
 
@@ -214,12 +161,10 @@ export default function Integrations() {
             p-6
 
             text-center
-
-            transition-all
             "
           >
 
-            {/* hover glow */}
+            {/* glow */}
 
             <div
               className="
@@ -259,7 +204,7 @@ export default function Integrations() {
 
         ))}
 
-      </motion.div>
+      </div>
 
     </section>
 
