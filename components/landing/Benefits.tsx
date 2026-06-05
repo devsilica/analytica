@@ -64,7 +64,7 @@ export default function Benefits() {
       "
     >
 
-      {/* heading */}
+      {/* Heading */}
 
       <motion.div
 
@@ -113,7 +113,7 @@ export default function Benefits() {
 
       </motion.div>
 
-      {/* cards */}
+      {/* Cards */}
 
       <div
         className="
@@ -165,12 +165,6 @@ export default function Benefits() {
 
               }}
 
-              animate={{
-
-                y:[0,-2,0],
-
-              }}
-
               className="
               relative
               overflow-hidden
@@ -178,21 +172,26 @@ export default function Benefits() {
               border border-slate-800
               bg-slate-900
               p-8
+              transition-all
               "
             >
+
+              {/* Glow */}
 
               <div
                 className="
                 absolute
                 inset-0
                 opacity-0
-                transition-opacity
                 hover:opacity-100
+                transition-opacity
                 bg-gradient-to-b
                 from-blue-500/5
                 to-transparent
                 "
               />
+
+              {/* Icon */}
 
               <motion.div
 
@@ -208,7 +207,9 @@ export default function Benefits() {
 
                 <Icon
                   size={34}
-                  className="text-blue-400"
+                  className="
+                  text-blue-400
+                  "
                 />
 
               </motion.div>
